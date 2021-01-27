@@ -5,8 +5,8 @@ module.exports = function () {
 
     // Create Token
     const keygenerator = require('keygenerator');
-    result.normal = keygenerator.session_id();
-    result.uri = encodeURIComponent(result.normal);
+    result.value = keygenerator.session_id();
+    result.uri = encodeURIComponent(result.value);
 
     // Complete
     return result;
