@@ -8,7 +8,10 @@ const csfrBase = {
     validator: require('./validator'),
 
     // Checker
-    checker: require('./checker')
+    checker: require('./checker'),
+
+    // Secure Checker
+    secureChecker: require('./secureChecker')
 
 };
 
