@@ -1,0 +1,22 @@
+{
+  "name": "@tinypudding/csrftoken-lib",
+  "version": "1.0.0",
+  "description": "Code Lib to help work with csrfToken.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TinyPudding/csrfToken-Lib.git"
+  },
+  "keywords": [
+    "csrfToken"
+  ],
+  "author": "Yasmin Seidel (JasminDreasond)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TinyPudding/csrfToken-Lib/issues"
+  },
+  "homepage": "https://github.com/TinyPudding/csrfToken-Lib#readme"
+}
