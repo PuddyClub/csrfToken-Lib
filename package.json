@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/TinyPudding/csrfToken-Lib#readme",
   "dependencies": {
-    "keygenerator": "^1.0.4"
+    "keygenerator": "^1.0.4",
+    "moment-timezone": "^0.5.32"
   }
 }
