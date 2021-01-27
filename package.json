@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/TinyPudding/csrfToken-Lib/issues"
   },
-  "homepage": "https://github.com/TinyPudding/csrfToken-Lib#readme"
+  "homepage": "https://github.com/TinyPudding/csrfToken-Lib#readme",
+  "dependencies": {
+    "keygenerator": "^1.0.4"
+  }
 }

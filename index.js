@@ -1,5 +1,13 @@
 // Module Base
-const csfrBase = {};
+const csfrBase = {
+
+    // Generator
+    generator: require('./generator'),
+
+    // Validator
+    validator: require('./validator')
+
+};
 
 // Export Module
 module.exports = csfrBase;
