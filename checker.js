@@ -6,6 +6,7 @@ module.exports = function (token, tokenURI, date, timeToUpdate = 60) {
 
     // Result
     const result = {
+        changed: false,
         old: { value: token, uri: tokenURI, date: moment.tz(date, 'Universal') },
         new: { value: null, uri: null, date: moment.tz('Universal').subtract(timeToUpdate, 'minutes') }
     };
@@ -35,6 +36,9 @@ module.exports = function (token, tokenURI, date, timeToUpdate = 60) {
             result.new.value = newToken.value;
             result.new.uri = newToken.uri;
 
+            // Value Changed
+            result.changed = true;
+
         }
 
     }
@@ -49,6 +53,9 @@ module.exports = function (token, tokenURI, date, timeToUpdate = 60) {
         result.old.value = newToken.value;
         result.old.uri = newToken.uri;
         result.old.date = result.new.date.clone();
+
+        // Value Changed
+        result.changed = true;
 
     }
 
