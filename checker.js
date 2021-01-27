@@ -1,21 +1,32 @@
 module.exports = function (token, tokenURI, date) {
 
     // Result
-    const result = { normal: token, uri: tokenURI, date: date };
+    const result = {
+        old: { value: token, uri: tokenURI, date: date },
+        new: { value: null, uri: null, date: null }
+    };
+
+    // Prepare Module
     const tokenGenerator = require('./generator');
 
-    // Validator
-    if (typeof result.normal === "string") {
-        if (typeof result.uri !== "string") { result.uri = encodeURIComponent(result.normal); }
-    } 
+    // Exist OLD
+    if (typeof result.old.value === "string") {
+
+        // Set New Values
+        result.new.value = result.old.value;
+        if (typeof result.old.uri !== "string") { result.new.uri = encodeURIComponent(result.old.value); } else {
+            result.new.uri = result.old.uri;
+        }
     
+    }
+
     // Nope
     else {
 
         // Token Generator
         const newToken = tokenGenerator();
-        result.normal = newToken.normal;
-        result.uri = newToken.uri;
+        result.new.value = newToken.value;
+        result.new.uri = newToken.uri;
 
     }
 
