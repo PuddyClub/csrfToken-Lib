@@ -5,7 +5,10 @@ const csfrBase = {
     generator: require('./generator'),
 
     // Validator
-    validator: require('./validator')
+    validator: require('./validator'),
+
+    // Checker
+    checker: require('./checker')
 
 };
 
