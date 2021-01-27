@@ -1,14 +1,23 @@
-module.exports = function (token, tokenURI, date, timeToUpdate = 60) {
+module.exports = function (data) {
 
     // Prepare Modules
     const tokenGenerator = require('./generator');
     const moment = require('moment-timezone');
+    const _ = require('lodash');
+
+    // Config
+    const tinyCfg = _.defaultsDeep({}, data, {
+        value: null,
+        uri: null,
+        date: null,
+        timeoutUpdate: 60,
+    });
 
     // Result
     const result = {
         changed: false,
-        old: { value: token, uri: tokenURI, date: moment.tz(date, 'Universal') },
-        new: { value: null, uri: null, date: moment.tz('Universal').subtract(timeToUpdate, 'minutes') }
+        old: { value: tinyCfg.value, uri: tinyCfg.uri, date: moment.tz(tinyCfg.date, 'Universal') },
+        new: { value: null, uri: null, date: moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, 'minutes') }
     };
 
     // Exist OLD
