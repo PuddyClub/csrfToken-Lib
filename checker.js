@@ -16,15 +16,24 @@ module.exports = function (data) {
     // Result
     const result = {
         changed: false,
-        now: { value: tinyCfg.value, uri: tinyCfg.uri, date: moment.tz(tinyCfg.date, 'Universal') },
-        new: { value: null, uri: null, date: moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, 'minutes') }
+        now: { value: tinyCfg.value, uri: tinyCfg.uri },
+        new: { value: null, uri: null }
     };
+
+    // Exist Time
+    if (typeof tinyCfg.timeoutUpdate === "number" && !isNaN(tinyCfg.timeoutUpdate) && isFinite(tinyCfg.timeoutUpdate) && tinyCfg.timeoutUpdate > -1) {
+        result.now.date = moment.tz(tinyCfg.date, 'Universal');
+        result.new.date = moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, 'minutes');
+    }
 
     // Exist OLD
     if (typeof result.now.value === "string") {
 
         // Keep OLD Token
-        if (result.now.date.isValid() && result.new.date.isValid() && Math.abs(result.now.date.diff(result.new.date, 'minutes')) < tinyCfg.timeoutUpdate) {
+        if (
+            (!result.now.date && !result.new.date) ||
+            (result.now.date.isValid() && result.new.date.isValid() && Math.abs(result.now.date.diff(result.new.date, 'minutes')) < tinyCfg.timeoutUpdate)
+        ) {
 
             // Set Date
             result.new.date = result.now.date.clone();
