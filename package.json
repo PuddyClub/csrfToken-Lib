@@ -1,6 +1,6 @@
 {
   "name": "@tinypudding/csrftoken-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Code Lib to help work with csrfToken.",
   "main": "index.js",
   "scripts": {
