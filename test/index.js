@@ -5,7 +5,7 @@ const crfTokenGenerator = require('../index');
 console.log(crfTokenGenerator.checker({
     value: 'zCkeazBxT11QQ05dREsGgpan9NtLHX6N',
     uri: 'zCkeazBxT11QQ05dREsGgpan9NtLHX6N',
-    date: '2021-01-27T23:09:09Z'
+    date: '2021-01-28T01:57:34Z'
 }));
 
 // Timeout

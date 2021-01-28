@@ -32,7 +32,7 @@ module.exports = function (varname = 'csrfToken', timeoutUpdate = 60) {
             req.session[varname + '_date'] = null;
 
             // Set csrfToken Object
-            req.csrfToken = { old: {}, new: {} };
+            req.csrfToken = { now: {}, new: {} };
 
         }
 

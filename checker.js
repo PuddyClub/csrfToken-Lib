@@ -16,23 +16,23 @@ module.exports = function (data) {
     // Result
     const result = {
         changed: false,
-        old: { value: tinyCfg.value, uri: tinyCfg.uri, date: moment.tz(tinyCfg.date, 'Universal') },
+        now: { value: tinyCfg.value, uri: tinyCfg.uri, date: moment.tz(tinyCfg.date, 'Universal') },
         new: { value: null, uri: null, date: moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, 'minutes') }
     };
 
     // Exist OLD
-    if (typeof result.old.value === "string") {
+    if (typeof result.now.value === "string") {
 
         // Keep OLD Token
-        if (result.old.date.isValid() && result.new.date.isValid() && result.old.date.diff(result.new.date, 'minutes') > 0) {
+        if (result.now.date.isValid() && result.new.date.isValid() && Math.abs(result.now.date.diff(result.new.date, 'minutes')) < tinyCfg.timeoutUpdate) {
 
             // Set Date
-            result.new.date = result.old.date.clone();
+            result.new.date = result.now.date.clone();
 
             // Set New Values
-            result.new.value = result.old.value;
-            if (typeof result.old.uri !== "string") { result.old.uri = encodeURIComponent(result.old.value); result.new.uri = result.old.uri; } else {
-                result.new.uri = result.old.uri;
+            result.new.value = result.now.value;
+            if (typeof result.now.uri !== "string") { result.now.uri = encodeURIComponent(result.now.value); result.new.uri = result.now.uri; } else {
+                result.new.uri = result.now.uri;
             }
 
         }
@@ -59,9 +59,9 @@ module.exports = function (data) {
         const newToken = tokenGenerator();
         result.new.value = newToken.value;
         result.new.uri = newToken.uri;
-        result.old.value = newToken.value;
-        result.old.uri = newToken.uri;
-        result.old.date = result.new.date.clone();
+        result.now.value = newToken.value;
+        result.now.uri = newToken.uri;
+        result.now.date = result.new.date.clone();
 
         // Value Changed
         result.changed = true;
@@ -69,7 +69,7 @@ module.exports = function (data) {
     }
 
     // Convert Clocks to String
-    result.old.date = result.old.date.format();
+    result.now.date = result.now.date.format();
     result.new.date = result.new.date.format();
 
     // Result
