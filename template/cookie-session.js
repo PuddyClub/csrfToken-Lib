@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/34212039/redirect-to-firebase-hosting-custom-domain
-module.exports = function (varname = 'csrfToken', timeoutUpdate = 60) {
+module.exports = function (varname = 'csrfToken', timeoutUpdate = 60, timeoutType = 'minutes') {
     return (req, res, next) => {
 
         // Prepare New Session
@@ -8,6 +8,7 @@ module.exports = function (varname = 'csrfToken', timeoutUpdate = 60) {
             uri: req.session[varname + '_uri'],
             date: req.session[varname + '_date'],
             timeoutUpdate: timeoutUpdate,
+            timeoutType: timeoutType
         });
 
         // Exist Session

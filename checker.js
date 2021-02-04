@@ -11,6 +11,7 @@ module.exports = function (data) {
         uri: null,
         date: null,
         timeoutUpdate: 60,
+        timeoutType: 'minutes'
     });
 
     // Result
@@ -23,7 +24,7 @@ module.exports = function (data) {
     // Exist Time
     if (typeof tinyCfg.timeoutUpdate === "number" && !isNaN(tinyCfg.timeoutUpdate) && isFinite(tinyCfg.timeoutUpdate) && tinyCfg.timeoutUpdate > -1) {
         result.now.date = moment.tz(tinyCfg.date, 'Universal');
-        result.new.date = moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, 'minutes');
+        result.new.date = moment.tz('Universal').subtract(tinyCfg.timeoutUpdate, tinyCfg.timeoutType);
     }
 
     // Exist OLD
@@ -32,7 +33,7 @@ module.exports = function (data) {
         // Keep OLD Token
         if (
             (!result.now.date && !result.new.date) ||
-            (result.now.date.isValid() && result.new.date.isValid() && Math.abs(result.now.date.diff(result.new.date, 'minutes')) < tinyCfg.timeoutUpdate)
+            (result.now.date.isValid() && result.new.date.isValid() && Math.abs(result.now.date.diff(result.new.date, tinyCfg.timeoutType)) < tinyCfg.timeoutUpdate)
         ) {
 
             // Set Date
