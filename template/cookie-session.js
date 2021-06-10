@@ -3,7 +3,7 @@ module.exports = function (varname = 'csrfToken', timeoutUpdate = 60, timeoutTyp
     return (req, res, next) => {
 
         // Prepare New Session
-        const newSession = require('../secureChecker')(req, {
+        const newSession = require('../checker')({
             value: req.session[varname],
             uri: req.session[varname + '_uri'],
             date: req.session[varname + '_date'],
