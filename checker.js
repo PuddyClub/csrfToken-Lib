@@ -1,4 +1,4 @@
-module.exports = function (data) {
+module.exports = async function(data) {
 
     // Prepare Modules
     const tokenGenerator = require('./generator');
@@ -41,7 +41,10 @@ module.exports = function (data) {
 
             // Set New Values
             result.new.value = result.now.value;
-            if (typeof result.now.uri !== "string") { result.now.uri = encodeURIComponent(result.now.value); result.new.uri = result.now.uri; } else {
+            if (typeof result.now.uri !== "string") {
+                result.now.uri = encodeURIComponent(result.now.value);
+                result.new.uri = result.now.uri;
+            } else {
                 result.new.uri = result.now.uri;
             }
 
@@ -51,7 +54,7 @@ module.exports = function (data) {
         else {
 
             // Token Generator
-            const newToken = tokenGenerator();
+            const newToken = await tokenGenerator();
             result.new.value = newToken.value;
             result.new.uri = newToken.uri;
 
@@ -66,7 +69,7 @@ module.exports = function (data) {
     else {
 
         // Token Generator
-        const newToken = tokenGenerator();
+        const newToken = await tokenGenerator();
         result.new.value = newToken.value;
         result.new.uri = newToken.uri;
         result.now.value = newToken.value;

@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = async function() {
 
     // Result
     const result = { normal: null, uri: null };

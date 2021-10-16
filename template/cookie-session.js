@@ -1,9 +1,10 @@
 // https://stackoverflow.com/questions/34212039/redirect-to-firebase-hosting-custom-domain
-module.exports = function (varname = 'csrfToken', timeoutUpdate = 60, timeoutType = 'minutes') {
-    return (req, res, next) => {
+module.exports = function(varname = 'csrfToken', timeoutUpdate = 60, timeoutType = 'minutes') {
+    return async(req, res, next) => {
 
         // Prepare New Session
-        const newSession = require('../checker')({
+        const sessionGenerator = require('../checker');
+        const newSession = await sessionGenerator({
             value: req.session[varname],
             uri: req.session[varname + '_uri'],
             date: req.session[varname + '_date'],
