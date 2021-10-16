@@ -54,7 +54,7 @@ module.exports = async function(data) {
         else {
 
             // Token Generator
-            const newToken = await tokenGenerator();
+            const newToken = await tokenGenerator(data.type);
             result.new.value = newToken.value;
             result.new.uri = newToken.uri;
 
@@ -69,7 +69,7 @@ module.exports = async function(data) {
     else {
 
         // Token Generator
-        const newToken = await tokenGenerator();
+        const newToken = await tokenGenerator(data.type);
         result.new.value = newToken.value;
         result.new.uri = newToken.uri;
         result.now.value = newToken.value;

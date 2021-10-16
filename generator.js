@@ -1,12 +1,16 @@
-module.exports = async function() {
+module.exports = async function(type = 'normal') {
 
     // Result
     const result = { normal: null, uri: null };
 
     // Create Token
-    const keygenerator = require('keygenerator');
-    result.value = keygenerator.session_id();
-    result.uri = encodeURIComponent(result.value);
+
+    // Normal
+    if (type === "normal") {
+        const keygenerator = require('keygenerator');
+        result.value = keygenerator.session_id();
+        result.uri = encodeURIComponent(result.value);
+    }
 
     // Complete
     return result;
